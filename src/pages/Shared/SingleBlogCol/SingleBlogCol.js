@@ -5,7 +5,11 @@ const SingleBlogCol = ({ blog }) => {
   return (
     <div className="col">
       <div className="card shadow border-0">
-        <img src={`data:image/jpeg;base64,${blog.thumbnail}`} className="card-img-top" alt="..." />
+        <img
+          src={`data:image/jpeg;base64,${blog.thumbnail}`}
+          className="card-img-top"
+          alt="..."
+        />
         <div className="card-body">
           <h5 className="card-title">{blog.title}</h5>
 
@@ -46,5 +50,5 @@ const SingleBlogCol = ({ blog }) => {
     </div>
   );
 };
- 
+
 export default SingleBlogCol;

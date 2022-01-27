@@ -22,7 +22,7 @@ function App() {
         <Route path="/blogs" element={<Blogs />} />
 
         <Route
-          path="/blogs/:_id"
+          path="/blogs/:id"
           element={
             <PrivatRoute>
               <SingleBlog />

@@ -11,7 +11,7 @@ const AddExperience = () => {
     register,
     handleSubmit,
     formState: { errors },
-    // reset,
+    reset,
   } = useForm();
   const onSubmit = (data) => {
     const formData = new FormData();
@@ -36,7 +36,7 @@ const AddExperience = () => {
     axios.post("http://localhost:5000/blogs", formData).then((res) => {
       if (res.data?.insertedId) {
         alert("Your Experience Added Successfully. Checkout the Blog Page!");
-        // reset();
+        reset();
         console.log(res.data);
       }
     });

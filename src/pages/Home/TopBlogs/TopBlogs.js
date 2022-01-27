@@ -3,12 +3,11 @@ import SectionHead from "../../Shared/SectionHead/SectionHead";
 import { Link } from "react-router-dom";
 import SingleBlogCol from "../../Shared/SingleBlogCol/SingleBlogCol";
 import axios from "axios";
-import useAuth from "../../../hooks/useAuth";
 import LoadingSpinner from "../../Shared/LoadingSpinner/LoadingSpinner";
 
 const TopBlogs = () => {
   const [topBlogs, setTopBlogs] = useState([]);
-  const { isLoading, setIsLoading } = useAuth();
+  const [loading, setLoading] = useState(false);
 
   const sectionHead = {
     title: "Checkout Others Experience",
@@ -18,19 +17,19 @@ const TopBlogs = () => {
 
   // Get Top Blogs from DB
   useEffect(() => {
-    setIsLoading(true);
+    setLoading(true);
     axios.get("http://localhost:5000/top-blogs").then((res) => {
-      setIsLoading(false);
+      setLoading(false);
       setTopBlogs(res.data);
     });
-  }, [setIsLoading]);
+  }, [setLoading]);
 
   return (
     <div>
       <SectionHead sectionHead={sectionHead} />
 
       {/* Display Loading Spinner till data loads */}
-      {isLoading && <LoadingSpinner />}
+      {loading && <LoadingSpinner />}
 
       <div className="container my-5">
         {/* Blog Rows */}

@@ -4,12 +4,11 @@ import SectionHead from "../Shared/SectionHead/SectionHead";
 import Navigation from "../Shared/Navigation/Navigation";
 import Footer from "../Shared/Footer/Footer/Footer";
 import SingleBlogCol from "../Shared/SingleBlogCol/SingleBlogCol";
-import useAuth from "../../hooks/useAuth";
 import LoadingSpinner from "../Shared/LoadingSpinner/LoadingSpinner";
 
 const Blogs = () => {
   const [blogs, setBlogs] = useState([]);
-  const { isLoading, setIsLoading } = useAuth();
+  const [loading, setLoading] = useState(false);
 
   const sectionHead = {
     title: "Checkout Others Experience",
@@ -19,12 +18,12 @@ const Blogs = () => {
 
   // Get Blogs from DB
   useEffect(() => {
-    setIsLoading(true);
+    setLoading(true);
     axios.get("http://localhost:5000/blogs").then((res) => {
+      setLoading(false);
       setBlogs(res.data);
-      setIsLoading(false);
     });
-  }, [setIsLoading]);
+  }, []);
 
   return (
     <>
@@ -32,7 +31,7 @@ const Blogs = () => {
       <SectionHead sectionHead={sectionHead} />
 
       {/* Display Loading Spinner till data loads */}
-      {isLoading && <LoadingSpinner />}
+      {loading && <LoadingSpinner />}
 
       <div className="container my-5">
         <div className="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4">
