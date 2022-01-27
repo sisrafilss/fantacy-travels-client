@@ -1,3 +1,4 @@
+import axios from "axios";
 import {
   getAuth,
   signInWithPopup,
@@ -17,7 +18,7 @@ const useFirebase = () => {
   const [user, setUser] = useState({});
   const [authError, setAuthError] = useState("");
   const [isLoading, setIsLoading] = useState(true);
-  const [admin, setAdmin] = useState(true);
+  const [admin, setAdmin] = useState(false);
   // Setting true at inital state only for testing purpose. It will change after connecting database.
 
   const auth = getAuth();
@@ -34,9 +35,7 @@ const useFirebase = () => {
         setUser(newUser);
 
         // Send User data to server
-        // axios
-        //   .post("https://gentle-lake-31657.herokuapp.com/users", newUser)
-        //   .then(() => {});
+        axios.post("http://localhost:5000/users", newUser).then(() => {});
 
         // Set user to firebase
         updateProfile(auth.currentUser, {
@@ -89,12 +88,12 @@ const useFirebase = () => {
         setUser(user);
 
         // Set user data to database
-        /*  axios
-          .put("https://gentle-lake-31657.herokuapp.com/users", {
+        axios
+          .put("http://localhost:5000/users", {
             displayName: user.displayName,
             email: user.email,
           })
-          .then(() => {}); */
+          .then(() => {});
 
         // Redirect user to the home page after successfully registration
         redirectInitialPage(navigate, location);
@@ -131,11 +130,11 @@ const useFirebase = () => {
   };
 
   // Check admin status
-  /*   useEffect(() => {
-    axios.get(`https://gentle-lake-31657.herokuapp.com/users/${user.email}`).then((res) => {
+  useEffect(() => {
+    axios.get(`http://localhost:5000/users/${user.email}`).then((res) => {
       setAdmin(res?.data?.admin);
     });
-  }, [user.email]); */
+  }, [user.email]);
 
   // Redirect Initial Page
   const redirectInitialPage = (navigate, location) => {

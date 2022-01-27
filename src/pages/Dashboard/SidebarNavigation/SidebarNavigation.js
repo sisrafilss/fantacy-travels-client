@@ -9,6 +9,8 @@ import useAuth from "../../../hooks/useAuth";
 const SidebarNavigation = () => {
   const { admin } = useAuth();
 
+  console.log(admin);
+
   return (
     <>
       {/* Users Routes */}
@@ -26,14 +28,23 @@ const SidebarNavigation = () => {
         </NavLink>
       </ListItem>
 
-      {/* {admin && (
+      {admin && (
         <ListItem button>
-          <NavLink to="manage-users" className="nav-link text-secondary">
-            <GroupIcon sx={{ mr: 2 }} />
-            Manage Users
+          <NavLink to="make-admin" className="nav-link text-secondary">
+            <AddIcon sx={{ mr: 2 }} />
+            Make Admin
           </NavLink>
         </ListItem>
-      )} */}
+      )}
+
+      {admin && (
+        <ListItem button>
+          <NavLink to="manage-blogs" className="nav-link text-secondary">
+            <GroupIcon sx={{ mr: 2 }} />
+            Manage Blogs
+          </NavLink>
+        </ListItem>
+      )}
     </>
   );
 };
