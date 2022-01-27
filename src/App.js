@@ -8,6 +8,7 @@ import Dashboard from "./pages/Dashboard/Dashboard/Dashboard";
 import Register from "./pages/Login/Register/Register";
 import Blogs from "./pages/Blogs/Blogs";
 import SingleBlog from "./pages/SingleBlog/SingleBlog";
+import ShareYourBlog from "./pages/ShareYourBlog/ShareYourBlog";
 
 function App() {
   return (
@@ -19,6 +20,7 @@ function App() {
         <Route path="/register" element={<Register />} />
         <Route path="/blogs" element={<Blogs />} />
         <Route path="/blogs/:_id" element={<SingleBlog />} />
+        <Route path="/share-your-blog" element={<ShareYourBlog />} />
         <Route path="/dashboard/*" element={<Dashboard />} />
         <Route path="*" element={<PageNotFound />} />
       </Routes>
