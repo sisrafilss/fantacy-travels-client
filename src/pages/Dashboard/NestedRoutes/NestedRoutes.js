@@ -1,20 +1,14 @@
 import { Box } from "@mui/system";
 import React from "react";
-import { Routes } from "react-router-dom";
+import { Route, Routes } from "react-router-dom";
+import AddExperience from "../AddExperience/AddExperience";
 
 const NestedRoutes = () => {
   return (
     <Box>
       {/* Admin Routes */}
       <Routes>
-        {/* <Route
-          path="add-product"
-          element={
-            <AdminRoute>
-              <AddProduct />
-            </AdminRoute>
-          }
-        /> */}
+        <Route path="add-experience" element={<AddExperience />} />
       </Routes>
     </Box>
   );

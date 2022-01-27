@@ -12,18 +12,18 @@ const SidebarNavigation = () => {
   return (
     <>
       {/* Admin Routes */}
-      {admin && (
-        <ListItem button>
-          <NavLink
-            to="add-product"
-            className="nav-link text-secondary"
-            activeClassName="active"
-          >
-            <AddIcon sx={{ mr: 2 }} />
-            Add Product
-          </NavLink>
-        </ListItem>
-      )}
+
+      <ListItem button>
+        <NavLink
+          to="add-experience"
+          className="nav-link text-secondary"
+
+        >
+          <AddIcon sx={{ mr: 2 }} />
+          Add Experience
+        </NavLink>
+      </ListItem>
+
       {admin && (
         <ListItem button>
           <NavLink to="manage-users" className="nav-link text-secondary">
