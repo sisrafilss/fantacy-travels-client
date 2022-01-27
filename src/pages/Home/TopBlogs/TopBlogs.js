@@ -4,9 +4,11 @@ import SectionHead from "../../Shared/SectionHead/SectionHead";
 import tajmahal from "../../../images/tajmahal.jpg";
 import israfil from "../../../images/Israfil-Hossen-Image.jpg";
 import { Link } from "react-router-dom";
+import SingleBlogCol from "../../Shared/SingleBlogCol/SingleBlogCol";
 
 const topBlogs = [
   {
+    _id: 1,
     title: "Amazing Fantacy of Visiting Tajmahal - India",
     thumbnail: tajmahal,
     author: {
@@ -27,6 +29,7 @@ const topBlogs = [
     },
   },
   {
+    _id: 2,
     title: "Amazing Fantacy of Visiting Tajmahal - India",
     thumbnail: tajmahal,
     author: {
@@ -47,6 +50,7 @@ const topBlogs = [
     },
   },
   {
+    _id: 3,
     title: "Amazing Fantacy of Visiting Tajmahal - India",
     thumbnail: tajmahal,
     author: {
@@ -67,6 +71,7 @@ const topBlogs = [
     },
   },
   {
+    _id: 4,
     title: "Amazing Fantacy of Visiting Tajmahal - India",
     thumbnail: tajmahal,
     author: {
@@ -87,6 +92,7 @@ const topBlogs = [
     },
   },
   {
+    _id: 5,
     title: "Amazing Fantacy of Visiting Tajmahal - India",
     thumbnail: tajmahal,
     author: {
@@ -107,6 +113,7 @@ const topBlogs = [
     },
   },
   {
+    _id: 6,
     title: "Amazing Fantacy of Visiting Tajmahal - India",
     thumbnail: tajmahal,
     author: {
@@ -127,6 +134,7 @@ const topBlogs = [
     },
   },
   {
+    _id: 7,
     title: "Amazing Fantacy of Visiting Tajmahal - India",
     thumbnail: tajmahal,
     author: {
@@ -147,6 +155,7 @@ const topBlogs = [
     },
   },
   {
+    _id: 8,
     title: "Amazing Fantacy of Visiting Tajmahal - India",
     thumbnail: tajmahal,
     author: {
@@ -167,6 +176,7 @@ const topBlogs = [
     },
   },
   {
+    _id: 9,
     title: "Amazing Fantacy of Visiting Tajmahal - India",
     thumbnail: tajmahal,
     author: {
@@ -187,6 +197,7 @@ const topBlogs = [
     },
   },
   {
+    _id: 10,
     title: "Amazing Fantacy of Visiting Tajmahal - India",
     thumbnail: tajmahal,
     author: {
@@ -221,48 +232,8 @@ const TopBlogs = () => {
       <div className="container my-5">
         {/* Blog Rows */}
         <div className="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4">
-          {topBlogs.map((blog, index) => (
-            <div key={index} className="col">
-              <div className="card shadow">
-                <img src={blog.thumbnail} className="card-img-top" alt="..." />
-                <div className="card-body">
-                  <h5 className="card-title">{blog.title}</h5>
-
-                  {/* Blog Info */}
-                  <div className="row mt-3 mb-3 text-center">
-                    {/* Posted by ... */}
-                    <div className="col">
-                      <div>
-                        <img
-                          style={{
-                            height: "35px",
-                            width: "35px",
-                            borderRadius: "50%",
-                          }}
-                          src={blog.author.image}
-                          alt={blog.author.name}
-                        />
-                        <span className="text-muted mb-0 ms-3">
-                          {blog.author.name}
-                        </span>
-                      </div>
-                    </div>
-                    {/* Posted Time */}
-                    <div className="col">
-                      <p className="my-0 text-muted">{blog.author.postedOn}</p>
-                      {/* <p className="my-0 text-muted">20:44:55</p> */}
-                    </div>
-                    {/*  */}
-                  </div>
-
-                  <p className="card-text">
-                    {blog.description[0]}
-                    <span className="text-primary">[continue reading]</span>
-                  </p>
-                  <button className="btn btn-success">Detail</button>
-                </div>
-              </div>
-            </div>
+          {topBlogs.map((blog) => (
+            <SingleBlogCol key={blog._id} blog={blog} />
           ))}
         </div>
 

@@ -8,3 +8,16 @@
   background-color: #198754;
   color: #fff;
 }
+
+.card {
+  overflow: hidden;
+}
+
+.card-img {
+  transition: 0.3s all ease !important;
+  /* display: none; */
+}
+.card-img:hover {
+  transform: scale(1.1) !important;
+  overflow: hidden !important;
+}
