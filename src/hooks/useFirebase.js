@@ -35,7 +35,7 @@ const useFirebase = () => {
         setUser(newUser);
 
         // Send User data to server
-        axios.post("http://localhost:5000/users", newUser).then(() => {});
+        axios.post("https://whispering-ravine-95668.herokuapp.com/users", newUser).then(() => {});
 
         // Set user to firebase
         updateProfile(auth.currentUser, {
@@ -89,7 +89,7 @@ const useFirebase = () => {
 
         // Set user data to database
         axios
-          .put("http://localhost:5000/users", {
+          .put("https://whispering-ravine-95668.herokuapp.com/users", {
             displayName: user.displayName,
             email: user.email,
           })
@@ -131,7 +131,7 @@ const useFirebase = () => {
 
   // Check admin status
   useEffect(() => {
-    axios.get(`http://localhost:5000/users/${user.email}`).then((res) => {
+    axios.get(`https://whispering-ravine-95668.herokuapp.com/users/${user.email}`).then((res) => {
       setAdmin(res?.data?.admin);
     });
   }, [user.email]);

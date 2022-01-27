@@ -19,7 +19,7 @@ const Blogs = () => {
   // Get Blogs from DB
   useEffect(() => {
     setLoading(true);
-    axios.get("http://localhost:5000/blogs").then((res) => {
+    axios.get("https://whispering-ravine-95668.herokuapp.com/blogs").then((res) => {
       setLoading(false);
       setBlogs(res.data);
     });

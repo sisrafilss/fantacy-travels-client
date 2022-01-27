@@ -13,7 +13,7 @@ const ManageMyBlogs = () => {
   useEffect(() => {
     setLoading(true);
     axios
-      .get(`http://localhost:5000/all-blogs?email=${user.email}`)
+      .get(`https://whispering-ravine-95668.herokuapp.com/all-blogs?email=${user.email}`)
       .then((res) => {
         setLoading(false);
         setBlogs(res.data);
@@ -23,7 +23,7 @@ const ManageMyBlogs = () => {
   const handleDeleteBlog = (id) => {
     const proceed = window.confirm("Are you sure, want to delete?");
     if (proceed) {
-      axios.delete(`http://localhost:5000/blogs/${id}`).then((res) => {
+      axios.delete(`https://whispering-ravine-95668.herokuapp.com/blogs/${id}`).then((res) => {
         if (res.data.deletedCount > 0) {
           alert("Deleted Successfully!");
           const remainingBlogs = blogs.filter((ordr) => ordr._id !== id);

@@ -12,7 +12,7 @@ const ManageBlogs = () => {
   // Load all orders from Server
   useEffect(() => {
     setLoading(true);
-    axios.get(`http://localhost:5000/all-blog`).then((res) => {
+    axios.get(`https://whispering-ravine-95668.herokuapp.com/all-blog`).then((res) => {
       setLoading(false);
       setBlogs(res.data);
     });
@@ -21,7 +21,7 @@ const ManageBlogs = () => {
   const handleDeleteBlog = (id) => {
     const proceed = window.confirm("Are you sure, want to delete?");
     if (proceed) {
-      axios.delete(`http://localhost:5000/blogs/${id}`).then((res) => {
+      axios.delete(`https://whispering-ravine-95668.herokuapp.com/blogs/${id}`).then((res) => {
         if (res.data.deletedCount > 0) {
           alert("Deleted Successfully!");
           const remainingBlogs = blogs.filter((ordr) => ordr._id !== id);
@@ -33,7 +33,7 @@ const ManageBlogs = () => {
 
   // Handle Order Status
   const handlePublish = (id) => {
-    axios.put(`http://localhost:5000/blogs/${id}`).then((res) => {
+    axios.put(`https://whispering-ravine-95668.herokuapp.com/blogs/${id}`).then((res) => {
       if (res.data.modifiedCount > 0) {
         const updatedBlogs = blogs.find((pd) => pd._id === id);
         const remainingOrders = blogs.filter((pd) => pd._id !== id);

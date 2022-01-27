@@ -18,7 +18,7 @@ const TopBlogs = () => {
   // Get Top Blogs from DB
   useEffect(() => {
     setLoading(true);
-    axios.get("http://localhost:5000/top-blogs").then((res) => {
+    axios.get("https://whispering-ravine-95668.herokuapp.com/top-blogs").then((res) => {
       setLoading(false);
       setTopBlogs(res.data);
     });

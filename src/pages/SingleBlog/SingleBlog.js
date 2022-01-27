@@ -16,7 +16,7 @@ const SingleBlog = () => {
   // Load specific blog from DB
   useEffect(() => {
     setLoading(true);
-    axios.get(`http://localhost:5000/blogs/${id}`).then((res) => {
+    axios.get(`https://whispering-ravine-95668.herokuapp.com/blogs/${id}`).then((res) => {
       setBlog(res.data);
       setLoading(false);
     });

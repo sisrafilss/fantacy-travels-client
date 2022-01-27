@@ -11,7 +11,7 @@ const MakeAdmin = () => {
     reset,
   } = useForm();
   const onSubmit = (data) => {
-    axios.put(`http://localhost:5000/make-admin`, data).then((res) => {
+    axios.put(`https://whispering-ravine-95668.herokuapp.com/make-admin`, data).then((res) => {
       if (res.data?.modifiedCount === 1) {
         alert(`${data.email} added to Admin List`);
         reset();
