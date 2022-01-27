@@ -1,9 +1,10 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import useAuth from "../../../hooks/useAuth";
-import "./Header.css";
 
-const Navigtion = () => {
+import "./Navigation.css"; 
+
+const Navigation = () => {
   const { user, logOut } = useAuth();
   return (
     <nav className="navbar navbar-expand-lg navbar-dark bg-dark">
@@ -27,9 +28,7 @@ const Navigtion = () => {
             <li className="nav-item  fitpal-nav-item me-4">
               <Link to="/home">Home</Link>
             </li>
-            <li className="nav-item  fitpal-nav-item me-4">
-              <Link to="/all-products">All Products</Link>
-            </li>
+
 
             {user?.email && (
               <li className="nav-item  fitpal-nav-item me-4">
@@ -66,4 +65,4 @@ const Navigtion = () => {
   );
 };
 
-export default Navigtion;
+export default Navigation;

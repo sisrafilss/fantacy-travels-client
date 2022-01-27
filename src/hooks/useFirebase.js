@@ -1,17 +1,19 @@
-
 import {
   getAuth,
   signInWithPopup,
   GoogleAuthProvider,
+  signOut,
+  onAuthStateChanged,
 } from "firebase/auth";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import initializeAuthentication from "../Firebase/firebase.init";
 
 initializeAuthentication();
 
 const useFirebase = () => {
   const [user, setUser] = useState({});
-  
+  const [authError, setAuthError] = useState("");
+  const [isLoading, setIsLoading] = useState(true);
 
   const auth = getAuth();
 
@@ -98,7 +100,7 @@ const useFirebase = () => {
   };
 
   // Observing user state
-  /* useEffect(() => {
+  useEffect(() => {
     setIsLoading(true);
     const unsubscribe = onAuthStateChanged(auth, (user) => {
       if (user) {
@@ -109,10 +111,10 @@ const useFirebase = () => {
       setIsLoading(false);
     });
     return () => unsubscribe;
-  }, [auth]); */
+  }, [auth]);
 
   // Log Out
-  /*   const logOut = () => {
+  const logOut = () => {
     signOut(auth)
       .then(() => {
         setUser({});
@@ -120,7 +122,7 @@ const useFirebase = () => {
       .catch((error) => {
         setAuthError(error);
       });
-  }; */
+  };
 
   // Check admin status
   /*   useEffect(() => {
@@ -131,14 +133,14 @@ const useFirebase = () => {
 
   return {
     user,
-    // isLoading,
-    // authError,
+    isLoading,
+    authError,
     // admin,
     signInWithGoogle,
     // registerUser,
     // loginUser,
-    // setAuthError,
-    // logOut,
+    setAuthError,
+    logOut,
     // setAdmin,
   };
 };
