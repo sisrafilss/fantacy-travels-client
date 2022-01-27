@@ -5,6 +5,7 @@ import Login from "./pages/Login/Login/Login";
 import PageNotFound from "./pages/NotFoundPage/NotFoundPage";
 import AuthProvider from "./contexts/AuthProvider/AuthProvider";
 import Dashboard from "./pages/Dashboard/Dashboard/Dashboard";
+import Register from "./pages/Login/Register/Register";
 
 function App() {
   return (
@@ -13,6 +14,7 @@ function App() {
         <Route path="/" element={<Home />} />
         <Route path="/home" element={<Home />} />
         <Route path="/login" element={<Login />} />
+        <Route path="/register" element={<Register />} />
         <Route path="/dashboard/*" element={<Dashboard />} />
         <Route path="*" element={<PageNotFound />} />
       </Routes>

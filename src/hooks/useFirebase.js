@@ -4,6 +4,9 @@ import {
   GoogleAuthProvider,
   signOut,
   onAuthStateChanged,
+  signInWithEmailAndPassword,
+  createUserWithEmailAndPassword,
+  updateProfile,
 } from "firebase/auth";
 import { useEffect, useState } from "react";
 import initializeAuthentication from "../Firebase/firebase.init";
@@ -18,7 +21,7 @@ const useFirebase = () => {
   const auth = getAuth();
 
   // Register new user using email and password
-  /*  const registerUser = (name, email, password, history) => {
+  const registerUser = (name, email, password, navigate) => {
     setIsLoading(true);
     createUserWithEmailAndPassword(auth, email, password)
       .then(() => {
@@ -29,14 +32,17 @@ const useFirebase = () => {
         setUser(newUser);
 
         // Send User data to server
-        axios.post("https://gentle-lake-31657.herokuapp.com/users", newUser).then(() => {});
+        // axios
+        //   .post("https://gentle-lake-31657.herokuapp.com/users", newUser)
+        //   .then(() => {});
 
         // Set user to firebase
         updateProfile(auth.currentUser, {
           displayName: name,
         })
           .then(() => {
-            history.replace("/");
+            // Redirect user to the home page after successfully registration
+            navigate("/", { replace: true });
           })
           .catch((error) => {
             setAuthError(error);
@@ -48,10 +54,10 @@ const useFirebase = () => {
       .finally(() => {
         setIsLoading(false);
       });
-  }; */
+  };
 
   // Login user using email and password
-  /*   const loginUser = (email, password, location, history) => {
+  const loginUser = (email, password, location, navigate) => {
     setIsLoading(true);
     signInWithEmailAndPassword(auth, email, password)
       .then((result) => {
@@ -60,8 +66,7 @@ const useFirebase = () => {
         setAuthError("");
 
         // Redirect user where he/she wanted to go
-        const destination = location?.from?.state || "/";
-        history.replace(destination);
+        redirectInitialPage(navigate, location);
       })
       .catch((error) => {
         const errorMessage = error.message;
@@ -70,10 +75,10 @@ const useFirebase = () => {
       .finally(() => {
         setIsLoading(false);
       });
-  }; */
+  };
 
   // Sing In Using Google
-  const signInWithGoogle = (location, history) => {
+  const signInWithGoogle = (location, navigate) => {
     const googleProvider = new GoogleAuthProvider();
     signInWithPopup(auth, googleProvider)
       .then((result) => {
@@ -90,8 +95,7 @@ const useFirebase = () => {
           .then(() => {}); */
 
         // Redirect user to the home page after successfully registration
-        /*  const destination = location?.state?.from || "/";
-        history.replace(destination); */
+        redirectInitialPage(navigate, location);
       })
       .catch((error) => {
         // const errorMessage = error.message;
@@ -131,14 +135,20 @@ const useFirebase = () => {
     });
   }, [user.email]); */
 
+  // Redirect Initial Page
+  const redirectInitialPage = (navigate, location) => {
+    const from = location.state?.from?.pathname || "/";
+    navigate(from, { replace: true });
+  };
+
   return {
     user,
     isLoading,
     authError,
     // admin,
     signInWithGoogle,
-    // registerUser,
-    // loginUser,
+    registerUser,
+    loginUser,
     setAuthError,
     logOut,
     // setAdmin,
