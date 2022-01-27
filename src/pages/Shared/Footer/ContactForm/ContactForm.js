@@ -3,7 +3,7 @@ import React from "react";
 const ContactForm = () => {
   return (
     <div>
-      <h4 className="my-4">Contact Form!</h4>
+      <h4 className="my-4 text-light">Contact Form!</h4>
       <div>
         <div className="mb-3">
           <input

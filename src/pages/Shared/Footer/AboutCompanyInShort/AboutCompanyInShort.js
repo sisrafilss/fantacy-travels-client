@@ -6,7 +6,7 @@ const homePageUrl = "https://fantacy-travels.netlify.app/";
 const AboutCompanyInShort = () => {
   return (
     <div>
-      <h4 className="my-4">About Fantacy Travels</h4>
+      <h4 className="my-4 text-light">About Fantacy Travels</h4>
       <p className="pe-4">
         Sed ipsum posuere nunc libero pellentesque vitae ultrices posuere.
         Praesent justo dui laoreet dignissim lectus etiam ipsum habitant
@@ -24,13 +24,13 @@ const AboutCompanyInShort = () => {
         <p className="my-0 pb-1">
           <a className="copany-contact" href={homePageUrl}>
             <i className="fas fa-envelope-open footer-icon"></i> &nbsp;
-            info@fitpal-bicycle.com
+            info@fantacy-travels.com
           </a>
         </p>
         <p className="my-0 pb-1">
           <a className="copany-contact" href={homePageUrl}>
             <i className="fas fa-globe footer-icon"></i> &nbsp;
-            www.sfitpal-bicycle.com
+            www.fantacy-travels.com
           </a>
         </p>
       </div>

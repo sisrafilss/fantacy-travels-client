@@ -10,4 +10,4 @@ const SectionHead = (props) => {
     );
 };
 
-export default SectionHead;
+export default SectionHead; 

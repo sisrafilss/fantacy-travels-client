@@ -33,7 +33,7 @@ const helpfulLinks = [
 const HelpfulLinks = () => {
   return (
     <div className="mt-4">
-      <h4 className="pb-3">Helpful Links</h4>
+      <h4 className="pb-3 text-light">Helpful Links</h4>
       <div className="helpful-links">
         {helpfulLinks.map((link, index) => (
           <li key={index} className="mb-1">

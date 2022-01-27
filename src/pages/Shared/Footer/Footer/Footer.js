@@ -27,7 +27,7 @@ const Footer = () => {
         className="py-1"
         style={{ backgroundColor: "#222222", color: "#ccc" }}
       >
-        <p className="text-center">&copy; Copyrights 2021 FitPal Bicycle</p>
+        <p className="text-center">&copy; Copyrights 2021 Fantacy Travels</p>
       </div>
     </>
   );

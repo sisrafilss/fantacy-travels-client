@@ -29,6 +29,9 @@ const Navigation = () => {
               <Link to="/home">Home</Link>
             </li>
 
+            <li className="nav-item  fitpal-nav-item me-4">
+              <Link to="/blogs">Blogs</Link>
+            </li>
 
             {user?.email && (
               <li className="nav-item  fitpal-nav-item me-4">
