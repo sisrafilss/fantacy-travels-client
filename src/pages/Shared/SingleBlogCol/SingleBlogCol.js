@@ -5,7 +5,7 @@ const SingleBlogCol = ({ blog }) => {
   return (
     <div className="col">
       <div className="card shadow border-0">
-        <img src={blog.thumbnail} className="card-img-top" alt="..." />
+        <img src={`data:image/jpeg;base64,${blog.thumbnail}`} className="card-img-top" alt="..." />
         <div className="card-body">
           <h5 className="card-title">{blog.title}</h5>
 
@@ -15,13 +15,12 @@ const SingleBlogCol = ({ blog }) => {
             <div className="col">
               <div>
                 <img
-                  className="card-img"
                   style={{
                     height: "35px",
                     width: "35px",
                     borderRadius: "50%",
                   }}
-                  src={blog.author.image}
+                  src={blog.author.photoURL}
                   alt={blog.author.name}
                 />
                 <span className="text-muted mb-0 ms-3">{blog.author.name}</span>

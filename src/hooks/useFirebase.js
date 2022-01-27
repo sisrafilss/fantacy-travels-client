@@ -16,7 +16,7 @@ initializeAuthentication();
 const useFirebase = () => {
   const [user, setUser] = useState({});
   const [authError, setAuthError] = useState("");
-  const [isLoading, setIsLoading] = useState(true);
+  const [isLoading, setIsLoading] = useState(false);
   const [admin, setAdmin] = useState(true);
   // Setting true at inital state only for testing purpose. It will change after connecting database.
 
@@ -154,6 +154,7 @@ const useFirebase = () => {
     setAuthError,
     logOut,
     setAdmin,
+    setIsLoading,
   };
 };
 
