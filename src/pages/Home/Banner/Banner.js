@@ -46,7 +46,7 @@ const Banner = () => {
               Lorem ipsum, dolor sit amet consectetur adipisicing elit. Quae ue
               dicta unde natus debitis fuga dolorum aspernatur suscipit.
             </p>
-            <Link className="btn btn-primary btn-lg" to="/all-products">
+            <Link className="btn btn-primary btn-lg" to="/blogs">
               Read Travel Blogs
             </Link>
           </div>
@@ -62,7 +62,7 @@ const Banner = () => {
               Lorem ipsum, dolor sit amet consectetur adipisicing elit. Quae ue
               dicta unde natus debitis fuga dolorum aspernatur suscipit.
             </p>
-            <Link className="btn btn-primary btn-lg" to="/all-products">
+            <Link className="btn btn-primary btn-lg" to="/blogs">
               Read Travel Blogs
             </Link>
           </div>
@@ -78,7 +78,7 @@ const Banner = () => {
               Lorem ipsum, dolor sit amet consectetur adipisicing elit. Quae ue
               dicta unde natus debitis fuga dolorum aspernatur suscipit.
             </p>
-            <Link className="btn btn-primary btn-lg" to="/all-products">
+            <Link className="btn btn-primary btn-lg" to="/blogs">
               Read Travel Blogs
             </Link>
           </div>

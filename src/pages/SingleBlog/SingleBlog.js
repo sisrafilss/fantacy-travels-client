@@ -2,6 +2,7 @@ import React from "react";
 // import { useParams } from "react-router-dom";
 import Footer from "../Shared/Footer/Footer/Footer";
 import Navigation from "../Shared/Navigation/Navigation";
+import ReactStars from "react-rating-stars-component";
 
 import tajmahal from "../../images/tajmahal.jpg";
 import israfil from "../../images/Israfil-Hossen-Image.jpg";
@@ -124,10 +125,18 @@ const SingleBlog = () => {
                 <div class="card shadow bg-secondary text-center text-light px-2 py-2">
                   <div class="card-body">
                     <p class="card-text lead">
-                      Overall Rating:{" "}
-                      <span className="text-warning fw-bold">
-                        {blog.travelInfo.rating}
-                      </span>
+                      Rating:{" "}
+                      <ReactStars
+                        count={5}
+                        size={24}
+                        value={blog.travelInfo.rating}
+                        edit={false}
+                        isHalf={true}
+                        emptyIcon={<i className="far fa-star"></i>}
+                        halfIcon={<i className="fa fa-star-half-alt"></i>}
+                        fullIcon={<i className="fa fa-star"></i>}
+                        activeColor="rgb(250, 202, 81)"
+                      />
                     </p>
                   </div>
                 </div>
