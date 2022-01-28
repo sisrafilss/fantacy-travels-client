@@ -15,7 +15,7 @@ const Comparsion = () => {
 
   useEffect(() => {
     axios
-      .get("http://localhost:5000/blog-statistics")
+      .get("https://whispering-ravine-95668.herokuapp.com/blog-statistics")
       .then((res) => setStatistics(res.data));
   }, []);
 
