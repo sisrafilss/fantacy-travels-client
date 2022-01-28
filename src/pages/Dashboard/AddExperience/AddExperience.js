@@ -4,7 +4,7 @@ import { useForm } from "react-hook-form";
 import useAuth from "../../../hooks/useAuth";
 
 const AddExperience = () => {
-  const { user } = useAuth();
+  const { user, admin } = useAuth();
 
   // React Hook Form
   const {
@@ -27,16 +27,17 @@ const AddExperience = () => {
     // Author Info
     formData.append("name", user.displayName);
     formData.append("email", user.email);
+    formData.append("admin", admin);
     formData.append("image", user.photoURL);
     formData.append("postedOn", new Date().toDateString());
 
     formData.append("description", data.description);
 
     // console.log(data);
-    axios.post("https://whispering-ravine-95668.herokuapp.com/blogs", formData).then((res) => {
+    axios.post("http://localhost:5000/blogs", formData).then((res) => {
       if (res.data?.insertedId) {
         alert("Your Experience Added Successfully. Checkout the Blog Page!");
-        reset();
+        // reset();
         console.log(res.data);
       }
     });
