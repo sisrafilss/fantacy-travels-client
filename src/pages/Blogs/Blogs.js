@@ -19,56 +19,68 @@ const Blogs = () => {
   // Get Blogs from DB
   useEffect(() => {
     setLoading(true);
-    axios.get("https://whispering-ravine-95668.herokuapp.com/blogs").then((res) => {
-      setLoading(false);
-      setBlogs(res.data);
-    });
+    axios
+      .get("https://whispering-ravine-95668.herokuapp.com/blogs")
+      .then((res) => {
+        setLoading(false);
+        setBlogs(res.data);
+      });
   }, []);
 
   return (
     <>
       <Navigation />
-      <SectionHead sectionHead={sectionHead} />
+
+      {blogs.length && <SectionHead sectionHead={sectionHead} />}
 
       {/* Display Loading Spinner till data loads */}
       {loading && <LoadingSpinner />}
 
-      <div className="container my-5">
-        <div className="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4">
-          {blogs.map((blog) => (
-            <SingleBlogCol key={blog._id} blog={blog} />
-          ))}
+      {!blogs.length && !loading ? (
+        <div>
+          <h2 className="text text-center my-5 display-4">No Blog Found!</h2>
         </div>
+      ) : (
+        <div className="container my-5">
+          <div className="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4">
+            {blogs.map((blog) => (
+              <SingleBlogCol key={blog._id} blog={blog} />
+            ))}
+          </div>
 
-        {/* Pagination */}
-        <div className="d-flex justify-content-center mt-5">
-          <nav aria-label="Page navigation example">
-            <ul className="pagination">
-              <li className="page-item">
-                <span className="page-link" aria-label="Previous">
-                  <span aria-hidden="true">&laquo; Previous</span>
-                </span>
-              </li>
-              <li className="page-item">
-                <span className="page-link" style={style.activePage}>
-                  1
-                </span>
-              </li>
-              <li className="page-item">
-                <span className="page-link">2</span>
-              </li>
-              <li className="page-item">
-                <span className="page-link">3</span>
-              </li>
-              <li className="page-item">
-                <span className="page-link" aria-label="Next">
-                  <span aria-hidden="true">Next &raquo;</span>
-                </span>
-              </li>
-            </ul>
-          </nav>
+          {/* Pagination */}
+          {
+            blogs.length &&  <div className="d-flex justify-content-center mt-5">
+            <nav aria-label="Page navigation example">
+              <ul className="pagination">
+                <li className="page-item">
+                  <span className="page-link" aria-label="Previous">
+                    <span aria-hidden="true">&laquo; Previous</span>
+                  </span>
+                </li>
+                <li className="page-item">
+                  <span className="page-link" style={style.activePage}>
+                    1
+                  </span>
+                </li>
+                <li className="page-item">
+                  <span className="page-link">2</span>
+                </li>
+                <li className="page-item">
+                  <span className="page-link">3</span>
+                </li>
+                <li className="page-item">
+                  <span className="page-link" aria-label="Next">
+                    <span aria-hidden="true">Next &raquo;</span>
+                  </span>
+                </li>
+              </ul>
+            </nav>
+          </div>
+          }
         </div>
-      </div>
+      )}
+
       <Footer />
     </>
   );

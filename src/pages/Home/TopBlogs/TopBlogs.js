@@ -18,33 +18,41 @@ const TopBlogs = () => {
   // Get Top Blogs from DB
   useEffect(() => {
     setLoading(true);
-    axios.get("https://whispering-ravine-95668.herokuapp.com/top-blogs").then((res) => {
-      setLoading(false);
-      setTopBlogs(res.data);
-    });
+    axios
+      .get("https://whispering-ravine-95668.herokuapp.com/top-blogs")
+      .then((res) => {
+        setLoading(false);
+        setTopBlogs(res.data);
+      });
   }, [setLoading]);
 
   return (
     <div>
-      <SectionHead sectionHead={sectionHead} />
+      {topBlogs.length && <SectionHead sectionHead={sectionHead} />}
 
       {/* Display Loading Spinner till data loads */}
       {loading && <LoadingSpinner />}
 
-      <div className="container my-5">
-        {/* Blog Rows */}
-        <div className="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4">
-          {topBlogs.map((blog) => (
-            <SingleBlogCol key={blog._id} blog={blog} />
-          ))}
+      {!topBlogs.length && !loading ? (
+        <div>
+          <h2 className="text text-center my-5 display-4">No Blog Found!</h2>
         </div>
+      ) : (
+        <div className="container my-5">
+          {/* Blog Rows */}
+          <div className="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4">
+            {topBlogs.map((blog) => (
+              <SingleBlogCol key={blog._id} blog={blog} />
+            ))}
+          </div>
 
-        <div className="my-5 d-grid">
-          <Link className="btn btn-load-more" to="/blogs">
-            All Blogs
-          </Link>
+          <div className="my-5 d-grid">
+            <Link className="btn btn-load-more" to="/blogs">
+              All Blogs
+            </Link>
+          </div>
         </div>
-      </div>
+      )}
     </div>
   );
 };

@@ -33,9 +33,11 @@ const Navigation = () => {
               <Link to="/blogs">Blogs</Link>
             </li>
 
-            <li className="nav-item  fitpal-nav-item me-4">
-              <Link to="/share-your-blog">Share Your Blog</Link>
-            </li>
+            {!user?.email && (
+              <li className="nav-item  fitpal-nav-item me-4">
+                <Link to="/share-your-blog">Share Your Blog</Link>
+              </li>
+            )}
 
             {user?.email && (
               <li className="nav-item  fitpal-nav-item me-4">

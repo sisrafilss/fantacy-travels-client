@@ -13,7 +13,9 @@ const ManageMyBlogs = () => {
   useEffect(() => {
     setLoading(true);
     axios
-      .get(`https://whispering-ravine-95668.herokuapp.com/all-blogs?email=${user.email}`)
+      .get(
+        `https://whispering-ravine-95668.herokuapp.com/all-blogs?email=${user.email}`
+      )
       .then((res) => {
         setLoading(false);
         setBlogs(res.data);
@@ -23,13 +25,15 @@ const ManageMyBlogs = () => {
   const handleDeleteBlog = (id) => {
     const proceed = window.confirm("Are you sure, want to delete?");
     if (proceed) {
-      axios.delete(`https://whispering-ravine-95668.herokuapp.com/blogs/${id}`).then((res) => {
-        if (res.data.deletedCount > 0) {
-          alert("Deleted Successfully!");
-          const remainingBlogs = blogs.filter((ordr) => ordr._id !== id);
-          setBlogs(remainingBlogs);
-        }
-      });
+      axios
+        .delete(`https://whispering-ravine-95668.herokuapp.com/blogs/${id}`)
+        .then((res) => {
+          if (res.data.deletedCount > 0) {
+            alert("Deleted Successfully!");
+            const remainingBlogs = blogs.filter((ordr) => ordr._id !== id);
+            setBlogs(remainingBlogs);
+          }
+        });
     }
   };
 
@@ -41,35 +45,43 @@ const ManageMyBlogs = () => {
         {/* Display Loading Spinner till data loads */}
         {loading && <LoadingSpinner />}
 
-        <div>
-          <table className="table table-hover">
-            <thead>
-              <tr>
-                <th scope="col">Title</th>
-                <th scope="col">Posted At</th>
-                <th scope="col">Status</th>
-                <th scope="col">Actions</th>
-              </tr>
-            </thead>
-            <tbody>
-              {blogs.map((blog) => (
-                <tr key={blog._id}>
-                  <td> {blog?.title} </td>
-                  <td> {blog?.author.postedOn} </td>
-                  <td> {blog?.publish} </td>
-                  <td>
-                    <button
-                      onClick={() => handleDeleteBlog(blog?._id)}
-                      className="btn btn-danger"
-                    >
-                      Delete
-                    </button>
-                  </td>
+        {!blogs.length && !loading ? (
+          <div>
+            <h2 className="text-center display-4 my-4">
+              You didn't Post any Blog Yet!
+            </h2>
+          </div>
+        ) : (
+          <div>
+            <table className="table table-hover">
+              <thead>
+                <tr>
+                  <th scope="col">Title</th>
+                  <th scope="col">Posted At</th>
+                  <th scope="col">Status</th>
+                  <th scope="col">Actions</th>
                 </tr>
-              ))}
-            </tbody>
-          </table>
-        </div>
+              </thead>
+              <tbody>
+                {blogs.map((blog) => (
+                  <tr key={blog._id}>
+                    <td> {blog?.title} </td>
+                    <td> {blog?.author.postedOn} </td>
+                    <td> {blog?.publish} </td>
+                    <td>
+                      <button
+                        onClick={() => handleDeleteBlog(blog?._id)}
+                        className="btn btn-danger"
+                      >
+                        Delete
+                      </button>
+                    </td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
+        )}
       </div>
     </div>
   );

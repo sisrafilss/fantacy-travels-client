@@ -12,37 +12,45 @@ const ManageBlogs = () => {
   // Load all orders from Server
   useEffect(() => {
     setLoading(true);
-    axios.get(`https://whispering-ravine-95668.herokuapp.com/all-blog`).then((res) => {
-      setLoading(false);
-      setBlogs(res.data);
-    });
+    axios
+      .get(`https://whispering-ravine-95668.herokuapp.com/all-blog`)
+      .then((res) => {
+        setLoading(false);
+        setBlogs(res.data);
+      });
   }, [setLoading, user.email]);
 
   const handleDeleteBlog = (id) => {
     const proceed = window.confirm("Are you sure, want to delete?");
     if (proceed) {
-      axios.delete(`https://whispering-ravine-95668.herokuapp.com/blogs/${id}`).then((res) => {
-        if (res.data.deletedCount > 0) {
-          alert("Deleted Successfully!");
-          const remainingBlogs = blogs.filter((ordr) => ordr._id !== id);
-          setBlogs(remainingBlogs);
-        }
-      });
+      axios
+        .delete(`https://whispering-ravine-95668.herokuapp.com/blogs/${id}`)
+        .then((res) => {
+          if (res.data.deletedCount > 0) {
+            alert("Deleted Successfully!");
+            const remainingBlogs = blogs.filter((ordr) => ordr._id !== id);
+            setBlogs(remainingBlogs);
+          }
+        });
     }
   };
 
   // Handle Order Status
   const handlePublish = (id) => {
-    axios.put(`https://whispering-ravine-95668.herokuapp.com/blogs/${id}`).then((res) => {
-      if (res.data.modifiedCount > 0) {
-        const updatedBlogs = blogs.find((pd) => pd._id === id);
-        const remainingOrders = blogs.filter((pd) => pd._id !== id);
-        updatedBlogs.publish = "Published";
-        const newOrders = [...remainingOrders, updatedBlogs];
-        setBlogs(newOrders);
-      }
-    });
+    axios
+      .put(`https://whispering-ravine-95668.herokuapp.com/blogs/${id}`)
+      .then((res) => {
+        if (res.data.modifiedCount > 0) {
+          const updatedBlogs = blogs.find((pd) => pd._id === id);
+          const remainingOrders = blogs.filter((pd) => pd._id !== id);
+          updatedBlogs.publish = "Published";
+          const newOrders = [...remainingOrders, updatedBlogs];
+          setBlogs(newOrders);
+        }
+      });
   };
+
+  console.log(blogs);
 
   return (
     <div className="container py-4">
@@ -52,63 +60,73 @@ const ManageBlogs = () => {
         {/* Display Loading Spinner till data loads */}
         {loading && <LoadingSpinner />}
 
-        <div>
-          <table className="table table-hover">
-            <thead>
-              <tr>
-                <th scope="col">Title</th>
-                <th scope="col">Posted At</th>
-                <th scope="col">Status</th>
-                <th scope="col">Actions</th>
-              </tr>
-            </thead>
-            <tbody>
-              {blogs.map((blog) => (
-                <tr key={blog._id}>
-                  <td> {blog?.title} </td>
-                  <td> {blog?.author.postedOn} </td>
-                  <td> {blog?.publish} </td>
-                  <td
-                    // onClick={() => handleCancelOrder(order._id)}
-                    style={{ cursor: "pointer" }}
-                  >
-                    <div className="dropdown">
-                      <button
-                        className="btn btn-secondary dropdown-toggle"
-                        type="button"
-                        id="dropdownMenuButton2"
-                        data-bs-toggle="dropdown"
-                        aria-expanded="false"
-                      >
-                        Actions
-                      </button>
-                      <ul
-                        className="dropdown-menu dropdown-menu-dark actions-container"
-                        aria-labelledby="dropdownMenuButton2"
-                      >
-                        <li
-                          onClick={() => handlePublish(blog?._id)}
-                          className="dropdown-item"
-                        >
-                          Publish
-                        </li>
-                        <li>
-                          <hr className="dropdown-divider" />
-                        </li>
-                        <li
-                          onClick={() => handleDeleteBlog(blog?._id)}
-                          className="dropdown-item"
-                        >
-                          Delete
-                        </li>
-                      </ul>
-                    </div>
-                  </td>
+        {!blogs.length && !loading ? (
+          <div>
+            <h2 className="text-center display-4 my-4">No Blog Found!</h2>
+          </div>
+        ) : (
+          <div>
+            <table className="table table-hover">
+              <thead>
+                <tr>
+                  <th scope="col">Title</th>
+                  <th scope="col">Posted By</th>
+                  <th scope="col">Email</th>
+                  <th scope="col">Posted At</th>
+                  <th scope="col">Status</th>
+                  <th scope="col">Actions</th>
                 </tr>
-              ))}
-            </tbody>
-          </table>
-        </div>
+              </thead>
+              <tbody>
+                {blogs.map((blog) => (
+                  <tr key={blog._id}>
+                    <td> {blog?.title} </td>
+                    <td> {blog?.author.name} </td>
+                    <td> {blog?.email} </td>
+                    <td> {blog?.author.postedOn} </td>
+                    <td> {blog?.publish} </td>
+                    <td
+                      // onClick={() => handleCancelOrder(order._id)}
+                      style={{ cursor: "pointer" }}
+                    >
+                      <div className="dropdown">
+                        <button
+                          className="btn btn-secondary dropdown-toggle"
+                          type="button"
+                          id="dropdownMenuButton2"
+                          data-bs-toggle="dropdown"
+                          aria-expanded="false"
+                        >
+                          Actions
+                        </button>
+                        <ul
+                          className="dropdown-menu dropdown-menu-dark actions-container"
+                          aria-labelledby="dropdownMenuButton2"
+                        >
+                          <li
+                            onClick={() => handlePublish(blog?._id)}
+                            className="dropdown-item"
+                          >
+                            Publish
+                          </li>
+                          <li>
+                            <hr className="dropdown-divider" />
+                          </li>
+                          <li
+                            onClick={() => handleDeleteBlog(blog?._id)}
+                            className="dropdown-item"
+                          >
+                            Delete
+                          </li>
+                        </ul>
+                      </div>
+                    </td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
+        )}
       </div>
     </div>
   );

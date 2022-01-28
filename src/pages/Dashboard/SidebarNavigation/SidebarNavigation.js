@@ -45,6 +45,13 @@ const SidebarNavigation = () => {
           </NavLink>
         </ListItem>
       )}
+
+      <ListItem button>
+        <NavLink to="logout" className="nav-link text-secondary">
+          <GroupIcon sx={{ mr: 2 }} />
+          Log Out
+        </NavLink>
+      </ListItem>
     </>
   );
 };
