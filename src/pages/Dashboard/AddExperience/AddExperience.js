@@ -37,7 +37,7 @@ const AddExperience = () => {
     axios.post("https://whispering-ravine-95668.herokuapp.com/blogs", formData).then((res) => {
       if (res.data?.insertedId) {
         alert("Your Experience Added Successfully. Checkout the Blog Page!");
-        // reset();
+        reset();
         console.log(res.data);
       }
     });
